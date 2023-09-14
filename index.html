@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Set</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" /> 
+    <script src="setFinder.js"></script>
+    <script src="gameboard.js"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <!-- Header with rules -->  
+      <div id="header">
+        <h1 class="center">Game of set </h1>
+        <h2>Rules</h2>
+        <ol>
+            <li>Click on the three cards you feel make a SET. Press Submit afterwards.</li>
+            <li>If you need help finding a SET, press Hint and 2 cards will light up orange.</li>
+            <li>If you would like the deck to be replaced with 12 cards, press Shuffle.</li>
+            <li>If you would like more cards to be added to the deck, press More Cards.</li>
+            <li>If you would like to quit, press Quit.</li>
+        </ol>
+      </div>
+
+      <!-- Main body with deck --> 
+      <div>
+        <h2 class="center">Game</h2>
+
+        <!-- Display of the cards -->
+        <div class="cards center" id="card-container">
+          <h2>Here is the current deck</h2> 
+          <script async id="begining"> redraw() </script>
+        </div>
+      </div>
+
+      <!-- Sidebar with control buttons --> 
+      <div id="side">
+
+        <!-- Submit Button -->
+        <script>
+            function submit() {
+              //Checks if user selected valid amt of cards
+              if(validInput()){
+                let arr = getSelectedCards();
+                //Checks if user selections are a set
+                if(isASet(arr[0],arr[1],arr[2])){
+                  window.alert("Is a set!");
+                  removeSet(arr[0],arr[1],arr[2]);
+                  score += 1;
+                  setScore(score);
+                }
+                else{
+                  window.alert("Not a set");
+                }
+              }
+              else{
+                window.alert("Please select exactly 3 cards");
+              }
+
+              //Sets the timer
+              window.onload();
+
+              //Lets the player(s) know when there aren't any sets left
+              if (!setLeftAll) {
+                window.alert("There are no sets left. Please quit.")
+              }
+            }
+
+            //Displays the current score
+            function setScore(score) {
+              document.getElementById("scoreDisplay").innerHTML = "Current score is " + score;
+            }
+        </script>
+        <div>
+          <button id="submitButton" type="button" onClick="submit()" style="height:20px;width:100px">Submit</button>
+        </div>
+
+          <!-- Starts the game -->
+          <script>
+            function start() {
+              startUpSequence();
+              redraw();
+              //Disables the start button
+              disableStartButton();
+            }
+          </script>
+          <div>
+            <button id="startButton" type="button" onClick="start()" style="height:20px;width:100px">Start</button>
+          </div>
+
+          <!-- Hint Button -->
+          <script>
+            function hint() {
+              //Function for displaying hints
+              hintFinder();
+            }
+          </script>
+          <div>
+            <button type="button" onClick="hint()" style="height:20px;width:100px">Hint</button>
+          </div>
+  
+          <!-- Shuffle Button -->
+          <script>
+            function shuffle(){
+              reshuffle();
+              redraw();
+            }
+          </script>
+          <div>
+            <button type="button" onClick="shuffle()" style="height:20px;width:100px">Shuffle</button>
+          </div>
+  
+          <!-- More Cards Button -->
+          <script>
+              function moreCards(){
+                if(cardsTabled.length<21){
+                  addCard();
+                  addCard();
+                  addCard();
+                  redraw();
+                }
+            }
+          </script>
+          <div>
+            <button type="button" onClick="moreCards()" style="height:20px;width:100px">More Cards</button>
+          </div>
+  
+          <!-- Quit Button -->
+          <div>
+            <button onclick="window.location.href = 'start_screen.html';" style="height:20px;width:100px">Quit</button>
+          </div>
+
+      </div>
+
+      
+      <!-- Footer with score and timer -->
+      <div id="footer">
+        <div id="scoreDisplay">Current score = 0</div>
+        <div> This game will end in <span id="time">05:00</span>!</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,2 +1,5 @@
-# SetGame
-Card Game of Set
+# group5_jsset
+
+Steps to run:
+Open the start_screen.html in a web browser.
+Follow the instructions on the pages.
