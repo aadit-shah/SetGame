@@ -1,4 +1,4 @@
-# group5_jsset
+# SetGame
 
 Steps to run:
 Open the start_screen.html in a web browser.
