@@ -59,8 +59,7 @@ function isASet(index1, index2, index3) {
     return (
         compareNumber(card1, card2, card3) &&
         compareShape(card1, card2, card3) &&
-        compareShading(card1, card2, card3) &&
-        compareColor(card1, card2, card3)
+        compareShading(card1, card2, card3) 
     );
 }
 
@@ -104,8 +103,8 @@ function setLeftAll() {
 
     //Runs through all card combinations to find cards to print a hint
     outerLoop: for (let a = 0; a < numberOfCard; a++) {
-        for (let b = a + 1; b < numberOfCard; b++) {
-            for (let c = b + 1; c < numberOfCard; c++) {
+        for (let b = a; b < numberOfCard; b++) {
+            for (let c = b; c < numberOfCard; c++) {
                 // need to be modified based on others code
                 if (isASet(allCardsLeft[a], allCardsLeft[b], allCardsLeft[c])) {
                     find = true;
