@@ -30,10 +30,10 @@ class Card {
 
 //Creates all 81 cards
 function initDeck() {
-    for (var colorIndex = 0; colorIndex < colors.length; colorIndex++) {
-        for (var shapeIndex = 0; shapeIndex < shapes.length; shapeIndex++) {
-            for (var shadeIndex = 0; shadeIndex < shades.length; shadeIndex++) {
-                for (var numberIndex = 0; numberIndex < number.length; numberIndex++) {
+    for (var colorIndex = 0; colorIndex <= colors.length; colorIndex++) {
+        for (var shapeIndex = 0; shapeIndex <= shapes.length; shapeIndex++) {
+            for (var shadeIndex = 0; shadeIndex <= shades.length; shadeIndex++) {
+                for (var numberIndex = 0; numberIndex <= number.length; numberIndex++) {
                     let card = new Card(colors[colorIndex], shapes[shapeIndex], shades[shadeIndex], number[numberIndex]);
                     cardsInDeck.push(card);
                 }
@@ -51,7 +51,7 @@ function startUpSequence(){
 //Fills the cardsTabled array 
 function initTable(){
     cardsTabled = [];
-    for(let i = 0; i<12; i++){
+    for(let i = 0; i<11; i++){
 		//Random index of a card in the deck
 		let index = Math.floor(Math.random()*cardsInDeck.length);
 
